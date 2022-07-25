@@ -10,10 +10,28 @@ Add this to pubspec.yaml
 
 ```dart
 dependencies:
-  payfort_plugin: ^0.2.0+6
+  payfort_plugin: ^0.2.1+7
 ```
 
 ### Usage
+
+New API
+```dart
+PayfortPlugin.getID.then((value) => {
+                    //use this call to get device id and send it to server
+                    PayfortPlugin.performPaymentRequest(
+                      merchantRef: "YOR_MERCHANT_REF",
+                      sdkToken: "YOUR_SDK_TOKEN",
+                      name: "NAME",
+                      language: "LANGUAGE",
+                      email: "EMAIL",
+                      amount: "AMOUNT",//"100.00"
+                      command: "COMMAND",
+                      currency: "CURRENCY",
+                      mode: "MODE", //0 for test mode and 1 for production
+                    ).then((value) => debugPrint("Result :: $value"))
+                  });
+```
 
 ```dart
 PayfortPlugin.getID.then((deviceID) => { //use this deviceID to  send it to your server to get YOR_MERCHANT_REF and YOUR_SDK_TOKEN

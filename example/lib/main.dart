@@ -32,26 +32,36 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: RaisedButton(
+          child: ElevatedButton(
             child: Text('pay'),
             onPressed: () {
               PayfortPlugin.getID.then((value) => {
                     //use this call to get device id and send it to server
                     PayfortPlugin.performPaymentRequest(
-                            'YOR_MERCHANT_REF',
-                            'YOUR_SDK_TOKEN',
-                            'ahmed',
-                            'en',
-                            'user@mail.com',
-                            '100',
-                            'PURCHASE',
-                            'EGP',
-                            '0' //zero for test mode and one for production
-                            )
-                        .then((value) => {
-                              debugPrint(
-                                  'card number is ${value!['card_number']}')
-                            })
+                      merchantRef: "YOR_MERCHANT_REF",
+                      sdkToken: "YOUR_SDK_TOKEN",
+                      name: "name",
+                      language: "en/ar",
+                      email: "example@example.com",
+                      amount: "100.00",
+                      command: "eCommerce",
+                      currency: "SAR",
+                      mode: "0", //zero for test mode and one for production
+                    ).then((value) => debugPrint("Result :: $value"))
+
+                    /*
+                PayfortPlugin.performPaymentRequest(
+                    'YOR_MERCHANT_REF',
+                    'YOUR_SDK_TOKEN',
+                    'ahmed',
+                    'en',
+                    'user@mail.com',
+                    '100',
+                    'PURCHASE',
+                    'EGP',
+                    '0', //zero for test mode and one for production
+                ).then((value) => debugPrint('card number is ${value!['card_number']}'))
+                 */
                   });
             },
           ),
